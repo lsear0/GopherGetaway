@@ -23,7 +23,7 @@ export const TEXT_SIZES = [
   { id: 'xlarge', label: 'Extra large' },
 ];
 
-const STORAGE_KEY = 'gophertrip.accessibility';
+const STORAGE_KEY = 'gophergetaway.accessibility';
 
 const AccessibilityContext = createContext(null);
 

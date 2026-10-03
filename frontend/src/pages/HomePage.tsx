@@ -12,7 +12,7 @@ export function HomePage() {
     <div className="app">
       <header className="app__header">
         <div className="app__brand">
-          <h1 className="app__title">GopherTrip</h1>
+          <h1 className="app__title">GopherGetaway</h1>
           <p className="app__tagline">
             An AI travel agent for University of Minnesota students.
           </p>

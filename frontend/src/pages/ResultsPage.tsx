@@ -53,7 +53,7 @@ export function ResultsPage() {
       <header className="app__header">
         <div className="app__brand">
           <Link to="/" className="app__home-link">
-            GopherTrip
+            GopherGetaway
           </Link>
           <p className="app__tagline">Your trip, planned.</p>
         </div>

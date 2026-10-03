@@ -1,7 +1,7 @@
 {
-  "name": "gophertrip-frontend",
+  "name": "gophergetaway-frontend",
   "version": "0.1.0",
-  "description": "Frontend UI for GopherTrip — AI travel agent for UMN students.",
+  "description": "Frontend UI for GopherGetaway — AI travel agent for UMN students.",
   "type": "module",
   "scripts": {
     "dev": "vite",

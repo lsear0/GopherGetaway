@@ -14,7 +14,7 @@ export function AiIntro({ intro }: AiIntroProps) {
         <span>🧭</span>
       </div>
       <div className="ai-intro__bubble">
-        <p className="ai-intro__who">GopherTrip agent</p>
+        <p className="ai-intro__who">GopherGetaway agent</p>
         <p className="ai-intro__message">{intro}</p>
       </div>
     </section>

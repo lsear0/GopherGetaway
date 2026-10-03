@@ -1,4 +1,4 @@
-# GopherTrip Frontend
+# GopherGetaway Frontend
 
 React + Vite UI that holds all presentation and accessibility controls. It collects a
 student's travel profile and renders the itinerary the backend generates.

@@ -130,7 +130,7 @@ export const config = {
       'MCP_MAX_TOOL_RESPONSE_CHARS',
       DEFAULT_MCP_MAX_TOOL_RESPONSE_CHARS,
     ),
-    clientName: 'gophertrip-backend',
+    clientName: 'gophergetaway-backend',
     clientVersion: '0.1.0',
     stayingApiBearerToken: process.env.STAYINGAPI_BEARER_TOKEN || '',
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || '',

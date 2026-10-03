@@ -17,7 +17,7 @@ export function PlanPage() {
         <header className="app__header">
           <div className="app__brand">
             <Link to="/" className="app__home-link">
-              GopherTrip
+              GopherGetaway
             </Link>
             <p className="app__tagline">Let's plan your trip.</p>
           </div>

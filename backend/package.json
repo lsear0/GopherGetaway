@@ -1,7 +1,7 @@
 {
-  "name": "gophertrip-backend",
+  "name": "gophergetaway-backend",
   "version": "0.1.0",
-  "description": "Backend API for GopherTrip — AI travel agent for UMN students.",
+  "description": "Backend API for GopherGetaway — AI travel agent for UMN students.",
   "type": "module",
   "main": "src/server.js",
   "scripts": {

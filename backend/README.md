@@ -1,4 +1,4 @@
-# GopherTrip Backend
+# GopherGetaway Backend
 
 Node + Express API that holds all the core logic. It turns a student's structured travel
 preferences into a personalized trip recommendation using a multi-stage AI travel-agent

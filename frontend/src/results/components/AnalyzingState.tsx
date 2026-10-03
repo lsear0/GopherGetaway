@@ -17,7 +17,7 @@ export function AnalyzingState({ label }: AnalyzingStateProps) {
         <span className="analyzing__dot" />
       </div>
       <p className="analyzing__label">{label}</p>
-      <p className="analyzing__sub">Your GopherTrip agent is building a plan just for you.</p>
+      <p className="analyzing__sub">Your GopherGetaway agent is building a plan just for you.</p>
     </div>
   );
 }

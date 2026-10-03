@@ -8,7 +8,7 @@ import { createDefaultPreferences, type TripPreferences } from './types';
  * malformed falls back to a fresh default rather than throwing.
  */
 
-export const PLANNER_STORAGE_KEY = 'gophertrip.preferences';
+export const PLANNER_STORAGE_KEY = 'gophergetaway.preferences';
 
 export function loadPreferences(): TripPreferences {
   try {

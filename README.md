@@ -1,4 +1,4 @@
-# GopherTrip — AI Travel Agent for UMN Students
+# GopherGetaway — AI Travel Agent for UMN Students
 
 A website where University of Minnesota students enter their budget, interests, and travel
 preferences, and an AI travel agent builds a personalized, budget-honest trip for them.

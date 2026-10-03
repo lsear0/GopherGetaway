@@ -4,7 +4,7 @@
 
 This file applies to work inside `backend/`.
 
-The backend is a Node + Express API for GopherTrip. It validates student trip profiles, orchestrates OpenAI trip generation, and connects to external travel tools through MCP.
+The backend is a Node + Express API for GopherGetaway. It validates student trip profiles, orchestrates OpenAI trip generation, and connects to external travel tools through MCP.
 
 ## Architecture
 
