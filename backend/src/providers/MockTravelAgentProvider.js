@@ -75,6 +75,9 @@ function makeMockLlm(prefs) {
             description: 'Sample activity (mock provider — set OPENAI_API_KEY for real plans).',
             travelFromPreviousMin: 0,
             estimatedCostUsd: Math.round(perDay * 0.4),
+            // First/last day anchors are 'required'; mid-day extras are 'optional'.
+            tier: i === 0 || i === days - 1 ? 'required' : 'recommended',
+            source: { provider: 'mock' },
           },
           {
             time: '14:00',
@@ -82,6 +85,8 @@ function makeMockLlm(prefs) {
             description: 'Sample activity grouped nearby to limit travel time.',
             travelFromPreviousMin: 20,
             estimatedCostUsd: Math.round(perDay * 0.6),
+            tier: 'optional',
+            source: { provider: 'mock' },
           },
         ],
       }));

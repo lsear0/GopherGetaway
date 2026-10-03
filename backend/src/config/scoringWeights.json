@@ -1,0 +1,8 @@
+{
+  "_comment": "Transparent, configurable scoring weights for the deterministic destination/accommodation evaluator (Nupur's rule: weights live in config, not inline in code). Each weight is overridable per-request-independent via env SCORING_WEIGHT_<NAME>, e.g. SCORING_WEIGHT_BUDGET_FIT=0.4. The score is used only to rank ELIGIBLE options; it is never a safety or objective-quality measure.",
+  "budgetFit": 0.3,
+  "preferenceMatch": 0.25,
+  "locationFit": 0.15,
+  "transportationFit": 0.15,
+  "interestMatch": 0.15
+}

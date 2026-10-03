@@ -12,6 +12,8 @@ import { ItineraryTimeline } from '../results/components/ItineraryTimeline';
 import { WhyThisTrip } from '../results/components/WhyThisTrip';
 import { Alternatives } from '../results/components/Alternatives';
 import { ModifyControls } from '../results/components/ModifyControls';
+import { BoardingPass } from '../results/components/BoardingPass';
+import { EditableItinerary } from '../results/components/EditableItinerary';
 
 /**
  * The /results route — the AI travel-agent experience.
@@ -87,9 +89,17 @@ export function ResultsPage() {
               busy={busy}
             />
 
+            <BoardingPass
+              destination={recommendation.destination}
+              alternatives={recommendation.alternatives}
+              budgetLimitUsd={recommendation.budget.limitUsd}
+            />
+
             <BudgetBreakdown budget={recommendation.budget} />
 
             <ItineraryTimeline itinerary={recommendation.itinerary} />
+
+            <EditableItinerary itinerary={recommendation.itinerary} />
 
             <WhyThisTrip reasons={recommendation.reasons} />
 
