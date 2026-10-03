@@ -6,7 +6,7 @@ import App from './App.jsx';
 import { HomePage } from './pages/HomePage.tsx';
 import { PlanPage } from './pages/PlanPage.tsx';
 import { ResultsPage } from './pages/ResultsPage.tsx';
-import { AccessibilityProvider } from './context/AccessibilityContext.js';
+import { AccessibilityProvider } from './context/AccessibilityContext.jsx';
 import './styles/global.css';
 import './styles/planner.css';
 import './styles/results.css';

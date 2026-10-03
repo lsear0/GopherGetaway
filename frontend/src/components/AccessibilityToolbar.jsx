@@ -2,7 +2,7 @@ import {
   TEXT_SIZES,
   THEMES,
   useAccessibility,
-} from '../context/AccessibilityContext.js';
+} from '../context/AccessibilityContext.jsx';
 
 /**
  * Toolbar that lets students adjust accessibility settings:
