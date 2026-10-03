@@ -1,0 +1,470 @@
+/*
+ * Styles for the /plan wizard and related pages.
+ *
+ * Everything here consumes the design tokens defined in global.css (--color-*, --radius,
+ * --space, --font-scale). That means the colorblind themes, high-contrast mode, and
+ * large-text scaling all apply to the wizard automatically — no theme-specific rules
+ * needed.
+ */
+
+/* ---- Brand header tweaks for routed pages ---- */
+.app__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.app__home-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.app__home-link:hover {
+  text-decoration: underline;
+}
+
+/* ---- Hero (home) ---- */
+.hero {
+  text-align: center;
+  padding: 2rem 0;
+}
+.hero__headline {
+  color: var(--color-primary);
+  font-size: 1.9rem;
+  margin-bottom: 0.5rem;
+}
+.hero__sub {
+  color: var(--color-muted);
+  max-width: 34rem;
+  margin: 0 auto 1.5rem;
+}
+
+.button--lg {
+  font-size: 1.1rem;
+  padding: 0.8rem 1.6rem;
+}
+.button--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-border);
+}
+.button--ghost:hover {
+  border-color: var(--color-primary);
+}
+
+/* ---- Wizard shell ---- */
+.wizard {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* ---- Progress indicator ---- */
+.progress {
+  margin-bottom: 1.5rem;
+}
+.progress__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+.progress__count {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.progress__title {
+  color: var(--color-muted);
+}
+.progress__bar {
+  height: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.35s ease;
+}
+.progress__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+}
+.progress__dot {
+  color: var(--color-muted);
+}
+.progress__dot--current {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.progress__dot--done {
+  color: var(--color-text);
+}
+.progress__dot-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  font: inherit;
+}
+
+/* ---- Step panel + subtle enter animation ---- */
+.wizard__panel {
+  outline: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wizard__panel--forward {
+    animation: slide-in-right 0.28s ease;
+  }
+  .wizard__panel--back {
+    animation: slide-in-left 0.28s ease;
+  }
+}
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- Step layout ---- */
+.step__title {
+  color: var(--color-primary);
+  margin: 0 0 0.25rem;
+}
+.step__intro {
+  color: var(--color-muted);
+  margin: 0 0 1.25rem;
+}
+.step__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.step__error {
+  min-height: 1.4rem;
+  margin: 0.75rem 0 0;
+  color: var(--color-error);
+  font-weight: 600;
+}
+.step__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* ---- Chips (interests) ---- */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.chip:hover {
+  border-color: var(--color-primary);
+}
+.chip--selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+.chip__icon {
+  font-size: 1.1em;
+}
+.chip--removable {
+  padding-right: 0.5rem;
+}
+.chip__remove {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.2rem;
+}
+.custom-interest__row {
+  display: flex;
+  gap: 0.5rem;
+}
+.custom-interest__row input {
+  flex: 1;
+}
+.custom-interest__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+/* ---- Selectable cards (style/transport/accommodation) ---- */
+.card-group {
+  display: grid;
+  gap: 0.75rem;
+}
+.card-group--cards {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+.card-group--compact {
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+}
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 1rem 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.option-card:hover {
+  border-color: var(--color-primary);
+}
+.option-card:active {
+  transform: scale(0.98);
+}
+.option-card--selected {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+.option-card__icon {
+  font-size: 1.6rem;
+}
+.option-card__label {
+  font-weight: 600;
+}
+.option-card__hint {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+/* ---- Money field ---- */
+.money-field__wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+.money-field__prefix {
+  padding: 0 0.1rem 0 0.7rem;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+.money-field__wrap input {
+  border: none;
+  border-radius: 0;
+}
+.money-field__wrap:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Slider choice ---- */
+.slider-choice__labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.slider-choice__end--right {
+  text-align: right;
+}
+.slider-choice__input {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+/* ---- Stepper ---- */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stepper__btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+}
+.stepper__btn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+.stepper__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.stepper__value {
+  width: 4.5rem;
+  text-align: center;
+}
+.stepper__unit {
+  color: var(--color-muted);
+}
+
+/* ---- Segmented control ---- */
+.segmented {
+  display: inline-flex;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.segmented__item {
+  padding: 0.5rem 1rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+.segmented__item--selected {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+/* ---- Quick choice pills ---- */
+.quick-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.pill {
+  padding: 0.45rem 0.9rem;
+  border: 2px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+}
+.pill:hover {
+  border-color: var(--color-primary);
+}
+.pill--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+/* ---- Dates ---- */
+.date-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ---- Review ---- */
+.review {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.review__row {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+.review__label {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+.review__value {
+  margin: 0;
+}
+.review__edit {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  font: inherit;
+}
+.review__note {
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* ---- Results page ---- */
+.results-intro {
+  margin-bottom: 1.5rem;
+}
+.results-intro h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+.results-actions {
+  margin-top: 1.5rem;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 36rem) {
+  .review__row {
+    grid-template-columns: 1fr auto;
+  }
+  .review__label {
+    grid-column: 1 / -1;
+  }
+  .date-grid {
+    grid-template-columns: 1fr;
+  }
+  .step__nav .button {
+    flex: 1;
+  }
+}
