@@ -8,9 +8,14 @@ export function errorHandler(err, req, res, next) {
   console.error(err);
 
   const status = err.status || 500;
-  res.status(status).json({
+  const body = {
     error: err.publicMessage || 'Something went wrong generating your trip.',
-  });
+  };
+  // Validation errors attach a field-level details array; surface it to the client.
+  if (Array.isArray(err.details)) {
+    body.details = err.details;
+  }
+  res.status(status).json(body);
 }
 
 /** Helper to create an error with an HTTP status and a safe, user-facing message. */
