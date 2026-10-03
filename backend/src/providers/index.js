@@ -1,6 +1,7 @@
 import { resolveProviderName } from '../config/env.js';
 import { MockTravelAgentProvider } from './MockTravelAgentProvider.js';
 import { OpenAITravelAgentProvider } from './OpenAITravelAgentProvider.js';
+import { OpenAIMcpTravelAgentProvider } from './OpenAIMcpTravelAgentProvider.js';
 
 /**
  * Provider factory — the ONE place that decides which TravelAgentProvider is in use.
@@ -13,8 +14,11 @@ let cached = null;
 export function getTravelAgentProvider() {
   if (cached) return cached;
 
-  const name = resolveProviderName(); // 'mock' | 'openai'
+  const name = resolveProviderName(); // 'mock' | 'openai' | 'openai+mcp'
   switch (name) {
+    case 'openai+mcp':
+      cached = new OpenAIMcpTravelAgentProvider();
+      break;
     case 'openai':
       cached = new OpenAITravelAgentProvider();
       break;

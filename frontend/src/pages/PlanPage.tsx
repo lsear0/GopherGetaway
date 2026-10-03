@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 // The accessibility toolbar is the existing plain-JSX component; its .d.ts gives types.
 import AccessibilityToolbar from '../components/AccessibilityToolbar.jsx';
-import { PlannerProvider } from '../planner/PlannerContext';
-import { PlanWizard } from '../planner/PlanWizard';
+import { PlannerProvider } from '../planner/PlannerContext.js';
+import { PlanWizard } from '../planner/PlanWizard.js';
 
 /**
  * The /plan route. Provides the planner state to the wizard and renders the shared page

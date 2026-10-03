@@ -2,20 +2,21 @@ import { z } from 'zod';
 
 import { ItineraryDaySchema } from '../../schemas/recommendation.schema.js';
 import { describePreferences, renderConstraints } from '../constraints.js';
+import { SAFETY_PROMPT } from '../safety.js';
+import { computeBudget } from '../itinerary/budgetMath.js';
 
 /**
- * STAGE 5 — Itinerary generation.
+ * STAGE 5 — Itinerary generation (Nupur's reshape).
  *
- * Given the chosen destination, asks the LLM to build a day-by-day plan: exactly one
- * entry per trip day, interest-aligned activities, realistic per-activity travel times,
- * and per-activity cost estimates. This is where "avoid activities too far apart" and
- * "include realistic travel time" are enforced in the prompt and later checked by the
- * budget-validation stage.
+ * The LLM proposes day structure, activities, descriptions, and a flexibility TIER per
+ * activity ('required' | 'recommended' | 'optional'). It does NOT compute budget totals.
+ * After the LLM returns, deterministic code (`computeBudget`) does the budget math, trims
+ * optional items to fit, and emits a validation object + budget summary.
  *
  * @param {Function} llm
  * @param {object} destination - the chosen destination
  * @param {import('../../schemas/preferences.schema.js').NormalizedPreferences} prefs
- * @returns {Promise<{ title: string, summary: string, itinerary: object[] }>}
+ * @returns {Promise<{ title, summary, itinerary, validation, budgetSummary }>}
  */
 const ItinerarySchema = z.object({
   title: z.string().min(1),
@@ -28,8 +29,12 @@ export async function generateItinerary(llm, destination, prefs) {
     'You are the itinerary-generation stage of a travel-planning agent.',
     `Build a realistic ${prefs.tripLengthDays}-day plan for the chosen destination.`,
     'Group nearby activities on the same day to minimize travel. Fill travelFromPreviousMin',
-    'with a realistic minutes estimate between consecutive activities. Keep the daily spend',
-    `near the user's ~$${prefs.dailyBudgetUsd}/day target and the trip within budget.`,
+    'with a realistic minutes estimate between consecutive activities.',
+    'Tag EACH activity with a "tier": "required" (arrival/check-in, departure/check-out,',
+    'or anything essential), "recommended", or "optional". Do NOT compute budget totals;',
+    'the server computes budget deterministically.',
+    '',
+    SAFETY_PROMPT,
     '',
     'Hard rules:',
     renderConstraints(),
@@ -44,14 +49,25 @@ export async function generateItinerary(llm, destination, prefs) {
     '',
     `Produce EXACTLY ${prefs.tripLengthDays} itinerary days. Return JSON:`,
     '{ "title", "summary", "itinerary": [{ day, title, summary, activities: [{ time,',
-    'title, description, travelFromPreviousMin, estimatedCostUsd }] }] }.',
+    'title, description, travelFromPreviousMin, estimatedCostUsd, tier }] }] }.',
   ].join('\n');
 
-  return llm(
+  const draft = await llm(
     [
       { role: 'system', content: system },
       { role: 'user', content: user },
     ],
     ItinerarySchema,
   );
+
+  // Deterministic budget math + trimming + validation (NOT the LLM).
+  const { itinerary, budgetSummary, validation } = computeBudget(draft.itinerary, prefs);
+
+  return {
+    title: draft.title,
+    summary: draft.summary,
+    itinerary,
+    budgetSummary,
+    validation,
+  };
 }

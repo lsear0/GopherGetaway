@@ -1,0 +1,48 @@
+{
+  "servers": [
+    {
+      "name": "stayingapi",
+      "transport": "streamableHttp",
+      "url": "https://mcp.stayingapi.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${STAYINGAPI_BEARER_TOKEN}"
+      },
+      "description": "Accommodation availability, listing details, pricing, and review tools from StayingAPI.",
+      "enabled": true
+    },
+    {
+      "name": "googleMaps",
+      "transport": "stdio",
+      "command": "node",
+      "args": [
+        "/absolute/path/to/google-maps-mcp-server.js"
+      ],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "${GOOGLE_MAPS_API_KEY}"
+      },
+      "description": "Stub for a Google Maps MCP server used for routing, travel times, and place lookup.",
+      "enabled": false
+    },
+    {
+      "name": "weather",
+      "transport": "stdio",
+      "command": "node",
+      "args": [
+        "/absolute/path/to/weather-mcp-server.js"
+      ],
+      "env": {
+        "WEATHER_API_KEY": "${WEATHER_API_KEY}"
+      },
+      "description": "Stub for a weather MCP server used for forecasts and climate-aware itinerary adjustments.",
+      "enabled": false
+    },
+    {
+      "name": "multiDomainTravel",
+      "transport": "sse",
+      "url": "https://example.com/mcp",
+      "headers": {},
+      "description": "Stub for a multi-domain travel MCP server covering flights and hotels.",
+      "enabled": false
+    }
+  ]
+}

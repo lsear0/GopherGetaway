@@ -2,16 +2,18 @@ import { useMemo } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import AccessibilityToolbar from '../components/AccessibilityToolbar.jsx';
-import { loadPreferences, PLANNER_STORAGE_KEY } from '../planner/plannerStorage';
-import { useRecommendation } from '../results/useRecommendation';
-import { AiIntro } from '../results/components/AiIntro';
-import { AnalyzingState } from '../results/components/AnalyzingState';
-import { DestinationCard } from '../results/components/DestinationCard';
-import { BudgetBreakdown } from '../results/components/BudgetBreakdown';
-import { ItineraryTimeline } from '../results/components/ItineraryTimeline';
-import { WhyThisTrip } from '../results/components/WhyThisTrip';
-import { Alternatives } from '../results/components/Alternatives';
-import { ModifyControls } from '../results/components/ModifyControls';
+import { loadPreferences, PLANNER_STORAGE_KEY } from '../planner/plannerStorage.js';
+import { useRecommendation } from '../results/useRecommendation.js';
+import { AiIntro } from '../results/components/AiIntro.js';
+import { AnalyzingState } from '../results/components/AnalyzingState.js';
+import { DestinationCard } from '../results/components/DestinationCard.js';
+import { BudgetBreakdown } from '../results/components/BudgetBreakdown.js';
+import { ItineraryTimeline } from '../results/components/ItineraryTimeline.js';
+import { WhyThisTrip } from '../results/components/WhyThisTrip.js';
+import { Alternatives } from '../results/components/Alternatives.js';
+import { ModifyControls } from '../results/components/ModifyControls.js';
+import { BoardingPass } from '../results/components/BoardingPass.js';
+import { EditableItinerary } from '../results/components/EditableItinerary.js';
 
 /**
  * The /results route — the AI travel-agent experience.
@@ -87,9 +89,17 @@ export function ResultsPage() {
               busy={busy}
             />
 
+            <BoardingPass
+              destination={recommendation.destination}
+              alternatives={recommendation.alternatives}
+              budgetLimitUsd={recommendation.budget.limitUsd}
+            />
+
             <BudgetBreakdown budget={recommendation.budget} />
 
             <ItineraryTimeline itinerary={recommendation.itinerary} />
+
+            <EditableItinerary itinerary={recommendation.itinerary} />
 
             <WhyThisTrip reasons={recommendation.reasons} />
 
